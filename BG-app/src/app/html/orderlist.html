@@ -1,0 +1,62 @@
+
+<table >
+    <tr>
+       <td>
+           <span>Company Name :</span>
+           <select (change)='onCompanyChange()'  [(ngModel)]='selectedCompany'>
+               <option *ngFor ="let company of companies" [value]="company">{{ company }}</option>
+           </select>
+       </td>
+        <td>
+           <span>Company Name :</span>
+           <select (change)='onAddressChange()'  [(ngModel)]='selectedAddress'>
+               <option *ngFor ="let address of addresses" [value]="address">{{ address }}</option>
+           </select>
+       </td>          
+    </tr>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>Company Name</th>
+            <th>Customer Address</th>
+            <th colspan="2">Ordered Item</th>
+
+        </tr>
+       
+    </thead>
+    <tbody>
+       <tr *ngFor="let order of orders; let i = index">
+            <td>{{order.orderId}}</td>
+            <td>{{order.companyName}}</td>
+            <td>{{order.customerAddress}}</td>
+            <td>{{order.orderedItem}}</td>
+            <td><form><button (click)='deleteOrder(order.orderId , i)'>x</button></form></td>
+       </tr>
+    </tbody>
+    
+        
+</table>
+
+<span>Product order frequency</span>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Product
+            </th>
+            <th>
+                Order Count
+            </th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let orderCount of orderCounts">
+            <td>{{ orderCount._id }}</td>
+            <td>{{ orderCount.count }}</td>
+        </tr>
+    </tbody>
+</table>
