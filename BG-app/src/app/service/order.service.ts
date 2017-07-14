@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/Http';
 import 'rxjs/add/operator/map';
+/**
+ * Order service to call the methods of node rest api
+ */
 @Injectable()
 export class OrderService{
     constructor(private http: Http){

@@ -1,0 +1,36 @@
+
+# Prerequisite
+
+1. node js installed
+
+2.  mongo DB installed and running
+
+
+
+# Setup
+
+1- npm install on BG-app direcory
+
+2- cd server
+
+3- cd sampledata
+
+4- node import.js (this will import the order data from sample.txt file, 
+     whatever data in the file will be imported to monogo db)
+
+5- cd../..
+
+6- ng build
+
+7- node server.js
+
+8- application should be availble on localhost:300/
+
+
+
+# Configuration assumptions
+
+=>mongoDB is running on port : 27017 (mongodb://localhost:27017/bgproducts)
+
+if not then please change the url in BG-app\server\dbaccess\db.js
+
