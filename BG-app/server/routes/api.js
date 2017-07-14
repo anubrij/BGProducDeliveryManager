@@ -1,13 +1,20 @@
+//Import the dependencies
 var express = require("express");
 
 var router = express.Router();
 
+//Import the BGProduct schema to communicate with database
 var BGProduct = require('../dbaccess/Model/BGProductModel');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
    res.send("api working!")
 });
+/**
+ * Get all order in db 
+ * @filter : companyName as query string
+ * @filter : address as query string
+ */
 router.get('/getAllOrder' , (req , res)=>{
     var companyName = req.query.companyName;
     var address = req.query.address;
@@ -26,6 +33,9 @@ router.get('/getAllOrder' , (req , res)=>{
             res.send(order);
     });
 });
+/**
+ * Get all the distinct company in db
+ */
 router.get('/getAllCompany' , (req , res) => {
     BGProduct.distinct('companyName' , function(err , companies){
         if(err)
@@ -34,6 +44,9 @@ router.get('/getAllCompany' , (req , res) => {
             res.send(companies);
     })
 });
+/**
+ * get all the distict address in db
+ */
 router.get('/getAllAddress' , (req , res) => {
     BGProduct.distinct('customerAddress' , function(err , addresses){
         if(err)
@@ -42,6 +55,9 @@ router.get('/getAllAddress' , (req , res) => {
             res.send(addresses);
     });
 });
+/**
+ * Get the product order frequency
+ */
 router.get('/getProductFrequency' , (req , res) => {
     BGProduct.aggregate([
         {$match : {} } , 
@@ -64,6 +80,10 @@ router.get('/getProductFrequency' , (req , res) => {
             }));
     });
 });
+/**
+ * delete the order from db
+ * @param id : order id send as query string
+ */
 router.delete('/order',(req , res)=>{
     var orderId = req.query.id;
     if(orderId)
